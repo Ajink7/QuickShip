@@ -7,6 +7,7 @@ import {
 	USER_DETAILS_SUCCESS,
 	USER_LIST_FAIL,
 	USER_LIST_REQUEST,
+	USER_LIST_RESET,
 	USER_LIST_SUCCESS,
 	USER_LOGIN_FAIL,
 	USER_LOGIN_REQUEST,
@@ -31,13 +32,13 @@ export const login = (email, password) => async (dispatch) => {
 				'Content-Type': 'application/json',
 			},
 		}
-		console.log(email, password)
+		//console.log(email, password)
 		const { data } = await axios.post(
 			'/api/users/login',
 			{ email, password },
 			config
 		)
-		console.log(data)
+		//console.log(data)
 		dispatch({
 			type: USER_LOGIN_SUCCESS,
 			payload: data,
@@ -60,6 +61,7 @@ export const logout = () => (dispatch) => {
 	dispatch({ type: USER_LOGOUT })
 	dispatch({ type: ORDER_LIST_MY_RESET })
 	dispatch({ type: USER_DETAILS_RESET })
+	dispatch({ type: USER_LIST_RESET })
 }
 
 export const register = (name, email, password) => async (dispatch) => {
