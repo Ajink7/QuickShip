@@ -5,7 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { deleteUser, listUsers } from '../actions/userActions'
-import { deleteProduct, listProducts } from '../actions/productActions'
+import {
+	createProduct,
+	deleteProduct,
+	listProducts,
+} from '../actions/productActions'
 
 const ProductListScreen = ({ history, match }) => {
 	const dispatch = useDispatch()
@@ -20,21 +24,41 @@ const ProductListScreen = ({ history, match }) => {
 		success: successDelete,
 	} = productDelete
 
+	const productCreate = useSelector((state) => state.productCreate)
+	const {
+		loading: loadingCreate,
+		error: errorCreate,
+		success: successCreate,
+		product: createdProduct,
+	} = productCreate
+
 	const userLogin = useSelector((state) => state.userLogin)
 	const { userInfo } = userLogin
 
 	useEffect(() => {
-		if (userInfo && userInfo.isAdmin) {
-			dispatch(listProducts())
-		} else {
-			history.push('/')
+		if (!userInfo.isAdmin) {
+			history.push('/login')
 		}
-	}, [dispatch, history, userInfo, successDelete])
+		if (successCreate) {
+			history.push(`/admin/product/${createdProduct._id}/edit`)
+		} else {
+			dispatch(listProducts())
+		}
+	}, [
+		dispatch,
+		history,
+		userInfo,
+		successDelete,
+		successCreate,
+		createdProduct,
+	])
 
 	const deleteHandler = (id) => {
 		dispatch(deleteProduct(id))
 	}
-
+	const createProductHandler = () => {
+		dispatch(createProduct())
+	}
 	return (
 		<>
 			<Row className='align-items-center'>
@@ -42,13 +66,15 @@ const ProductListScreen = ({ history, match }) => {
 					<h1>Products</h1>
 				</Col>
 				<Col className='text-right'>
-					<Button className='my-3 float-right'>
+					<Button className='my-3 float-right' onClick={createProductHandler}>
 						<i className='fas fa-plus'></i> Create Product
 					</Button>
 				</Col>
 			</Row>
 			{loadingDelete && <Loader />}
 			{errorDelete && <Message variant='danger'>{errorDelete}</Message>}
+			{loadingCreate && <Loader />}
+			{errorCreate && <Message variant='danger'>{errorCreate}</Message>}
 			{loading ? (
 				<Loader />
 			) : error ? (
