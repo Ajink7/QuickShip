@@ -8,7 +8,7 @@ import { getOrderDetails, payOrder } from '../actions/orderActions'
 import { PayPalButton } from 'react-paypal-button-v2'
 import axios from 'axios'
 import { ORDER_PAY_RESET } from '../constants/orderConstants'
-const OrderScreen = ({ match }) => {
+const OrderScreen = ({ match, history }) => {
 	const orderId = match.params.id
 	const orderDetails = useSelector((state) => state.orderDetails)
 	const { order, loading, error } = orderDetails
@@ -16,9 +16,15 @@ const OrderScreen = ({ match }) => {
 	const orderPay = useSelector((state) => state.orderPay)
 	const { loading: loadingPay, success: successPay } = orderPay
 
+	const userLogin = useSelector((state) => state.userLogin)
+	const { userInfo } = userLogin
+
 	const dispatch = useDispatch()
 	const [sdkReady, setSdkReady] = useState(false)
 	useEffect(() => {
+		if (!userInfo) {
+			history.push('/login')
+		}
 		const addPaypalScript = async () => {
 			const { data: clientId } = await axios.get('/api/config/paypal')
 			const script = document.createElement('script')
@@ -32,7 +38,7 @@ const OrderScreen = ({ match }) => {
 		}
 		//dispatch(getOrderDetails(orderId))
 
-		if (!order || successPay) {
+		if (!order || successPay || order._id !== orderId) {
 			dispatch({ type: ORDER_PAY_RESET })
 			dispatch(getOrderDetails(orderId))
 		} else if (!order.isPaid) {
@@ -42,7 +48,7 @@ const OrderScreen = ({ match }) => {
 				setSdkReady(true)
 			}
 		}
-	}, [dispatch, orderId, successPay, order])
+	}, [dispatch, orderId, successPay, order, userInfo, history])
 
 	const successPaymentHandler = (paymentResult) => {
 		console.log(paymentResult)

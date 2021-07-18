@@ -143,3 +143,38 @@ export const listMyOrders = () => async (dispatch, getState) => {
 		})
 	}
 }
+
+// export const checkOrder = (order) => async (dispatch, getState) => {
+// 	try {
+// 		dispatch({
+// 			type: ORDER_CHECK_REQUEST,
+// 		})
+
+// 		const {
+// 			userLogin: { userInfo },
+// 		} = getState()
+
+// 		const config = {
+// 			headers: {
+// 				Authorization: `Bearer ${userInfo.token}`,
+// 			},
+// 		}
+// 		const { cart } = getState().cart
+// 		const cartItems = cart.cartItems
+// 		const { data } = await axios.get(`/api/orders/${order._id}`, config)
+// 		const same = true
+// 		if()
+// 		dispatch({
+// 			type: ORDER_CHECK_SUCCESS,
+// 			payload: data,
+// 		})
+// 	} catch (error) {
+// 		dispatch({
+// 			type: ORDER_CHECK_FAIL,
+// 			payload:
+// 				error.response && error.response.data.message
+// 					? error.response.data.message
+// 					: error.message,
+// 		})
+// 	}
+// }

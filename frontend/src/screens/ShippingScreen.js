@@ -13,6 +13,10 @@ const ShippingScreen = ({ history }) => {
 	const [city, setCity] = useState(shippingAddress.city)
 	const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
 	const [country, setCountry] = useState(shippingAddress.country)
+
+	const orderCreate = useSelector((state) => state.orderCreate)
+	const { order, success, error } = orderCreate
+
 	const dispatch = useDispatch()
 	const submitHandler = (e) => {
 		e.preventDefault()

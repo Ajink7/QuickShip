@@ -1,3 +1,4 @@
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants'
 import {
 	ORDER_CREATE_FAIL,
 	ORDER_CREATE_REQUEST,
@@ -32,6 +33,10 @@ export const orderCreateReducer = (state = {}, action) => {
 				loading: false,
 				error: action.payload,
 			}
+		case CART_ADD_ITEM:
+			return {}
+		case CART_REMOVE_ITEM:
+			return {}
 		default:
 			return state
 	}
