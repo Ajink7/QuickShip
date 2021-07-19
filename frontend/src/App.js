@@ -32,14 +32,24 @@ function App() {
 					<Route path='/payment' component={PaymentScreen} />
 					<Route path='/login' component={LoginScreen} />
 					<Route path='/register' component={RegisterScreen} />
-					<Route path='/search/:keyword' component={HomeScreen} />
+					<Route path='/search/:keyword' component={HomeScreen} exact />
+					<Route path='/page/:pageNumber' component={HomeScreen} />
+					<Route
+						path='/search/:keyword/page/:pageNumber'
+						component={HomeScreen}
+					/>
 					<Route path='/profile' component={ProfileScreen} />
 					<Route path='/product/:id' component={ProductScreen} />
 					<Route path='/cart/:id?' component={CartScreen}></Route>
 					<Route path='/admin/userlist' component={UserListScreen}></Route>
 					<Route
 						path='/admin/productlist'
-						component={ProductListScreen}></Route>
+						component={ProductListScreen}
+						exact></Route>
+					<Route
+						path='/admin/productlist/:pageNumber'
+						component={ProductListScreen}
+						exact></Route>
 					<Route path='/admin/orderlist' component={OrderListScreen}></Route>
 					<Route path='/admin/user/:id/edit' component={UserEditScreen}></Route>
 					<Route
