@@ -2,11 +2,19 @@
 
 > eCommerce platform built with the MERN stack & Redux.
 
-[Checkout QuickShip App](https://www.udemy.com/course/mern-ecommerce)
+[Checkout QuickShip App](https://quickshipapp.herokuapp.com/)
 
 ![screenshot](https://github.com/Ajink7/QuickShip/blob/main/uploads/homescreen.jfif)
+
+## Home Screen
+
 ![screenshot](https://github.com/Ajink7/QuickShip/blob/main/uploads/orderscreen.jfif)
+
+## Order Screen
+
 ![screenshot](https://github.com/Ajink7/QuickShip/blob/main/uploads/adminscreen.jfif)
+
+## Admin Screen
 
 ## Features
 
