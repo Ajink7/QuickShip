@@ -4,17 +4,18 @@
 
 [Checkout QuickShip App](https://quickshipapp.herokuapp.com/)
 
-![screenshot](https://github.com/Ajink7/QuickShip/blob/main/uploads/homescreen.jfif)
-
 ## Home Screen
 
-![screenshot](https://github.com/Ajink7/QuickShip/blob/main/uploads/orderscreen.jfif)
+![screenshot](https://github.com/Ajink7/QuickShip/blob/main/uploads/homescreen.jfif)
 
 ## Order Screen
 
-![screenshot](https://github.com/Ajink7/QuickShip/blob/main/uploads/adminscreen.jfif)
+![screenshot](https://github.com/Ajink7/QuickShip/blob/main/uploads/orderscreen.jfif)
 
 ## Admin Screen
+
+![screenshot](https://github.com/Ajink7/QuickShip/blob/main/uploads/adminscreen.jfif)
+
 
 ## Features
 
